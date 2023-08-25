@@ -1,0 +1,38 @@
+name: Build
+
+on: 
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - '*.dot'
+      - '*.md'
+      - '*.yml'
+  pull_request:
+    paths-ignore: 
+      - '*.dot'
+      - '*.md'
+      - '*.yml'
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up JDK
+      uses: actions/setup-java@v3.12.0
+      with:
+        java-version: '11'
+        distribution: 'zulu'
+
+    - name: Build and test
+      run: |
+        chmod +x gradlew
+        ./gradlew check
+          
