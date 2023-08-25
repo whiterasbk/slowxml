@@ -33,17 +33,6 @@ kotlin {
         binaries.executable()
     }
 
-//    js {
-//        binaries.executable()
-//        browser {
-//            commonWebpackConfig {
-//                cssSupport {
-//                    enabled.set(true)
-//                }
-//            }
-//        }
-//    }
-
     sourceSets {
         val commonMain by getting
         val commonTest by getting {
@@ -64,7 +53,23 @@ tasks.named<JavaExec>("run") {
 }
 
 publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/whiterasbk/slowxml")
+            credentials {
+                username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_USERNAME")
+                password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_CLASSIC_TOKEN")
+            }
+        }
+    }
+
     publications {
+
+        register<MavenPublication>("gpr") {
+            from(components["kotlin"])
+        }
+
         create<MavenPublication>("release") {
             groupId = "com.github.whiterasbk"
             artifactId = project.name
