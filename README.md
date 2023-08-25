@@ -21,8 +21,16 @@ life is short, may time slow down
         }
     }
     ```
+    
+    alternatively, `jitpack` is available within a few certainer version
+   ```kotlin
+   repositories {
+       maven { url = uri("https://jitpack.io") }
+   }
+   ```
+   while using `jitpack`, you don't need a `gpr.properties` file, but latest version has to be only `0.2`
    
-4. add `slowxml` to your `dependencies` section
+5. add `slowxml` to your `dependencies` section
     ```kotlin
     dependencies {
         implementation("com.github.whiterasbk:slowxml-$platform:$latest_version")
@@ -30,7 +38,7 @@ life is short, may time slow down
         // version may check in latest release
     }
     ```
-5. sync `build.gradle.kts`
+6. sync `build.gradle.kts`
 
 ## How to use
 
