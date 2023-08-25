@@ -31,7 +31,7 @@ val node = parseXml("<root attr=\"value\"> 123 </root>")
 
 and you will be able to access its attributes through `node.attrbutes`, text content through `node.content`
 
-also, if you prefer dive into it, `loopInXmlString` brings more flexibility:
+also, if you prefer diving into it, `loopInXmlString` brings more flexibility:
 ```kotlin
 var get = ""
 loopInXmlString("<r> <!-- comment --> </a>") {     
