@@ -16,6 +16,7 @@ life is short, may time slow down
     dependencies {
         implementation("com.github.whiterasbk:slowxml-$platform:$latest_version")
         // where platform be like: js, jvm
+        // version may check in latest release
     }
     ```
 3. sync `build.gradle.kts`
