@@ -1,0 +1,1 @@
+package io.whiterasbk.kotlin.slowxml
