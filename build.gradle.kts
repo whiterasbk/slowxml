@@ -22,16 +22,16 @@ kotlin {
         }
     }
 
-    js {
-        binaries.executable()
-        browser {
-            commonWebpackConfig {
-                cssSupport {
-                    enabled.set(true)
-                }
-            }
-        }
-    }
+//    js {
+//        binaries.executable()
+//        browser {
+//            commonWebpackConfig {
+//                cssSupport {
+//                    enabled.set(true)
+//                }
+//            }
+//        }
+//    }
 
     sourceSets {
         val commonMain by getting

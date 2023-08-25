@@ -1,5 +1,6 @@
 # SlowXml: A Pure Kotlin Xml Parser
 
+life is short, may time slow down
 
 ## Installation
 
@@ -65,11 +66,11 @@ the state `11` switch to `1` happens only when meet close tag, no matter self cl
 
 ```kotlin
 when {
-    ...
+    //    ...
     previousState == 11 and currentState == 1 -> {
         // meet close tag, create a new node
     }
-    ...
+    //    ...
 }
 ```
 other situations can also be analyzed from below
