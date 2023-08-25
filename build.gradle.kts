@@ -29,7 +29,7 @@ kotlin {
                 enabled = false
             }
         }
-        // nodejs()
+        nodejs()
         binaries.executable()
     }
 
