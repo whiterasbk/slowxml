@@ -33,5 +33,6 @@ jobs:
 
     - name: Build and test
       run: |
+        chmod +x gradlew
         ./gradlew check
           
