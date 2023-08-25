@@ -43,16 +43,15 @@ by calling `onComment` function, `loopInXmlString` will automate invoke the give
 
 as the inside pointer meet comment, `get` will be set to ` comment `, then you can dill with it 
 
-the following is supported hook:
+the following is supported hooks:
 
-- `onOpenTag(tagName: String)`
-- `onCloseTag(tagName: String?)`
-- `onEndDefineAttributes()`
-- `onAttributeName(attribute: String)`
-- `onAttributeValue(value: String)`
-- `onComment(content: String)`
-- `onTextContent(content: String)`
-- `raiseExceptionCallback(block: (String) -> Nothing)`
+- `onOpenTag`
+- `onCloseTag`
+- `onEndDefineAttributes`
+- `onAttributeName`
+- `onAttributeValue`
+- `onComment`
+- `onTextContent`
 
 ## How does it work
 
