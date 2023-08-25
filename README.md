@@ -73,7 +73,7 @@ when {
     ...
 }
 ```
-other situation can also be analyzed from below
+other situations can also be analyzed from below
 ```dot
 digraph G {
    node [shape = circle];
