@@ -4,7 +4,7 @@ life is short, may time slow down
 
 ## Installation
 
-1. create a file name `gpr.properties` in your project root, filling with:
+1. create a file named `gpr.properties` in your project root, filling with:
    ```kotlin
    gpr.user="your username"
    gpr.key="your token"
