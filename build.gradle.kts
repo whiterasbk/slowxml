@@ -30,7 +30,7 @@ kotlin {
             }
         }
         // nodejs()
-        // binaries.executable()
+        binaries.executable()
     }
 
 //    js {
