@@ -5,21 +5,32 @@ plugins {
 }
 
 group = "com.github.whiterasbk"
-version = "0.2"
+version = "0.2.1"
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 kotlin {
     jvm {
-        jvmToolchain(8)
         withJava()
+        jvmToolchain(8)
         testRuns.named("test") {
             executionTask.configure {
                 useJUnitPlatform()
             }
         }
+    }
+
+    js(IR) {
+        browser {
+            testTask {
+                enabled = false
+            }
+        }
+        nodejs()
+        binaries.executable()
     }
 
 //    js {
