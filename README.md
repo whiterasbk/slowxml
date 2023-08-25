@@ -4,14 +4,25 @@ life is short, may time slow down
 
 ## Installation
 
-1. add `jitpack` to your `repositories` section 
+1. create a file name `gpr.properties` in your project root, filling with:
+   ```kotlin
+   gpr.user="your username"
+   gpr.key="your token"
+   ```
+    make sure you've added `gpr.properties` in **.gitignore** file !!!!
+
+3. add `gpr` to your `repositories` section 
     ```kotlin
-    repositories { 
-        maven { url uri("https://www.jitpack.io") } 
+    maven {
+        url = uri("https://maven.pkg.github.com/whiterasbk/slowxml")
+        credentials {
+            username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
+            password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
+        }
     }
     ```
    
-2. add `slowxml` to your `dependencies` section
+4. add `slowxml` to your `dependencies` section
     ```kotlin
     dependencies {
         implementation("com.github.whiterasbk:slowxml-$platform:$latest_version")
@@ -19,7 +30,7 @@ life is short, may time slow down
         // version may check in latest release
     }
     ```
-3. sync `build.gradle.kts`
+5. sync `build.gradle.kts`
 
 ## How to use
 
