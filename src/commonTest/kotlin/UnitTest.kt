@@ -9,17 +9,52 @@ import kotlin.test.assertFails
 
 class UnitTest {
     @Test
-    fun `test parsing android xml`() {
-        val xml = Thread.currentThread().contextClassLoader.getResource("android.xml")?.readText()
-        val sample = Thread.currentThread().contextClassLoader.getResource("sample.min.txt")?.readText()
-        xml ?: error("get test resource xml failure")
-        sample ?: error("get test resource sample failure")
+    fun test_parsing_android_xml() {
+
+        val xml = """
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="locate in ur hear">
+    <text>content</text>
+    <self-close/>
+    <self-close />
+    <self-close attr="value1"/>
+    <self-close attr="value2" />
+    <tag></tag>
+    <tag> </tag>
+    <tag ></tag>
+    <tag></ tag>
+    <tag ></ tag>
+    <!--    comment-->
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ComposeTest">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.ComposeTest">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
+        """
+        val sample = "XmlNode(name=manifest, attributes={xmlns:android=http://schemas.android.com/apk/res/android, package=locate in ur hear}, content=null, children=[XmlNode(name=text, attributes={}, content=content, children=[]), XmlNode(name=self-close, attributes={}, content=null, children=[]), XmlNode(name=self-close, attributes={}, content=null, children=[]), XmlNode(name=self-close, attributes={attr=value1}, content=null, children=[]), XmlNode(name=self-close, attributes={attr=value2}, content=null, children=[]), XmlNode(name=tag, attributes={}, content=null, children=[]), XmlNode(name=tag, attributes={}, content=null, children=[]), XmlNode(name=tag, attributes={}, content=null, children=[]), XmlNode(name=tag, attributes={}, content=null, children=[]), XmlNode(name=tag, attributes={}, content=null, children=[]), XmlNode(name=application, attributes={android:allowBackup=true, android:icon=@mipmap/ic_launcher, android:label=@string/app_name, android:roundIcon=@mipmap/ic_launcher_round, android:supportsRtl=true, android:theme=@style/Theme.ComposeTest}, content=null, children=[XmlNode(name=activity, attributes={android:name=.MainActivity, android:exported=true, android:label=@string/app_name, android:theme=@style/Theme.ComposeTest}, content=null, children=[XmlNode(name=intent-filter, attributes={}, content=null, children=[XmlNode(name=action, attributes={android:name=android.intent.action.MAIN}, content=null, children=[]), XmlNode(name=category, attributes={android:name=android.intent.category.LAUNCHER}, content=null, children=[])])])])])"
         val node = parseXml(xml)
         assertEquals(node.toString(), sample)
     }
 
     @Test
-    fun `test doctype`() {
+    fun test_doctype() {
         val xml = """
             <?xml version="1.0" encoding="utf-8"?>
             <svg/>
@@ -28,7 +63,7 @@ class UnitTest {
     }
 
     @Test
-    fun `test comment`() {
+    fun test_comment() {
         val xml = """
             <?xml version="1.0" encoding="utf-8"?>
             <svg>
@@ -49,7 +84,7 @@ class UnitTest {
     }
 
     @Test
-    fun `test tag name`() {
+    fun test_tag_name() {
         val xml = parseXml("""
            <root>
                <tag1 />
@@ -68,7 +103,7 @@ class UnitTest {
     }
 
     @Test
-    fun `test attributes`() {
+    fun test_attributes() {
         val xml = parseXml("""
            <root a = "1" b="2"/>
         """)
@@ -88,7 +123,7 @@ class UnitTest {
     }
 
     @Test
-    fun `test text content`() {
+    fun test_text_content() {
         val xml = parseXml("""
            <root a = "1" b="2">  text </root>
         """)
@@ -96,7 +131,7 @@ class UnitTest {
     }
 
     @Test
-    fun `test close tag`() {
+    fun test_close_tag() {
         assertFails {
             parseXml("""
                 <root></r00t>
