@@ -51,14 +51,27 @@ class XmlEventListenerBuilder {
     }
 }
 
-internal class Stack<E> : ArrayList<E>() {
-    fun pop(): E = removeLast()
+internal class Stack<E> {
 
-    fun push(e: E) { this += e }
+    private val _list = mutableListOf<E>()
 
-    fun peek(): E = last()
+    val size: Int get() = _list.size
 
-    fun empty(): Boolean = isEmpty()
+    fun pop(): E = _list.removeLast()
+
+    fun push(e: E) { _list += e }
+
+    fun peek(): E = _list.last()
+
+    fun empty(): Boolean = _list.isEmpty()
+
+    operator fun plusAssign(e: E) {
+        _list += e
+    }
+
+    fun joinToString(s: String) = _list.joinToString(s)
+
+    fun clear() = _list.clear()
 }
 
 internal data class Open(

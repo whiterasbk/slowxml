@@ -1,12 +1,11 @@
 plugins {
     kotlin("multiplatform") version "1.9.0"
     application
-    `java-library`
     `maven-publish`
 }
 
 group = "com.github.whiterasbk"
-version = "0.1"
+version = "0.2"
 
 repositories {
     mavenCentral()
