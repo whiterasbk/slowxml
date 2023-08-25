@@ -54,7 +54,7 @@ the following is supported hook:
 - `onTextContent(content: String)`
 - `raiseExceptionCallback(block: (String) -> Nothing)`
 
-## How is it work
+## How does it work
 
 `slowxml` uses state machine to parse xml string into objects
 
