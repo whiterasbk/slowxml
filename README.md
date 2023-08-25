@@ -60,10 +60,20 @@ the following is supported hook:
 
 ![](https://github.com/whiterasbk/slowxml/blob/master/.github/xml-state-machine.png?raw=true)
 
-this state machine will change its state according to current pinter and state, which make the computer knows what the stage is now
+this state machine will change its state according to current pinter and state, which make the computer knows what the stage is it now
 
-the state `11` switch to `1` happens only when meet close tag, no matter self close tag or not. base on this judge, we can start our procession  
+the state `11` switch to `1` happens only when meet close tag, no matter self close tag or not, base on this judgement, we can start our procession  
 
+```kotlin
+when {
+    ...
+    previousState == 11 and currentState == 1 -> {
+        // meet close tag, create a new node
+    }
+    ...
+}
+```
+other situation can also be analyzed from below
 ```dot
 digraph G {
    node [shape = circle];
