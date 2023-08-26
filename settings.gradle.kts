@@ -10,3 +10,5 @@ plugins {
 }
 
 rootProject.name = "slowxml"
+
+includeBuild("convention-plugins")

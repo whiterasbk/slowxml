@@ -43,3 +43,9 @@ bin/
 
 .idea
 kotlin-js-store
+local.properties
+gpg.keyring
+*.key
+private_key.asc
+*.pgp
+*.gpg

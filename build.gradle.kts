@@ -1,10 +1,14 @@
 plugins {
     kotlin("multiplatform") version "1.9.0"
+    // id("ossrh.publication")
+    // id("github.package")
+    id("jitpack.release")
     application
-    `maven-publish`
 }
 
-group = "com.github.whiterasbk"
+val releaseToMavenCentral = !true
+
+group = (if (releaseToMavenCentral) "io" else "com") + ".github.whiterasbk" // "com.github.whiterasbk" for jitpack
 version = "0.2.1"
 
 repositories {
@@ -52,29 +56,19 @@ tasks.named<JavaExec>("run") {
     classpath(tasks.named<Jar>("jvmJar"))
 }
 
-publishing {
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/whiterasbk/slowxml")
-            credentials {
-                username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_USERNAME")
-                password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_CLASSIC_TOKEN")
-            }
-        }
+if (releaseToMavenCentral) {
+    tasks.named("publishJvmPublicationToSonatypeRepository") {
+        dependsOn(tasks.named("signJsPublication"))
+        dependsOn(tasks.named("signKotlinMultiplatformPublication"))
     }
 
-    publications {
+    tasks.named("publishJsPublicationToSonatypeRepository") {
+        dependsOn(tasks.named("signJvmPublication"))
+        dependsOn(tasks.named("signKotlinMultiplatformPublication"))
+    }
 
-        register<MavenPublication>("gpr") {
-            from(components["kotlin"])
-        }
-
-        create<MavenPublication>("release") {
-            groupId = "com.github.whiterasbk"
-            artifactId = project.name
-            version = project.version.toString()
-            from(components["kotlin"])
-        }
+    tasks.named("publishKotlinMultiplatformPublicationToSonatypeRepository") {
+        dependsOn(tasks.named("signJsPublication"))
+        dependsOn(tasks.named("signJvmPublication"))
     }
 }
