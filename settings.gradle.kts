@@ -12,3 +12,4 @@ plugins {
 rootProject.name = "slowxml"
 
 includeBuild("convention-plugins")
+include("cmp-test")

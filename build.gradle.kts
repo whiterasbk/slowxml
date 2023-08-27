@@ -2,7 +2,7 @@ plugins {
     kotlin("multiplatform") version "1.9.0"
     // id("ossrh.publication")
     // id("github.package")
-    id("jitpack.release")
+    id("jitpack.release") apply false
     application
 }
 

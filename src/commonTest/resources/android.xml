@@ -9,8 +9,8 @@
     <tag></tag>
     <tag> </tag>
     <tag ></tag>
-    <tag></ tag>
-    <tag ></ tag>
+    <tag></tag>
+    <tag ></tag>
     <!--    comment-->
     <application
         android:allowBackup="true"
