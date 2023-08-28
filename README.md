@@ -22,7 +22,7 @@ life is short, may time slow down
     }
     ```
     
-    alternatively, `jitpack` is available within a few certain version
+    alternatively, `jitpack` is available within a few certain versions
    ```kotlin
    repositories {
        maven { url = uri("https://jitpack.io") }
