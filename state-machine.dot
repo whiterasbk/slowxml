@@ -63,4 +63,7 @@ start -> 1
     21 -> 20 [label = "  expect - "]
     22 -> 1 [label = "  >"]
 
+    // <?xml?>
+    // 2 -> 16 [label = "  ?"]
+
 }
